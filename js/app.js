@@ -27,6 +27,7 @@ function randomPicture() {
   return allPicturesArray[a];
 }
 console.log(allPicturesArray);
+
 // constructor function with name and path parameters for pictures
 function Picture(name) {
   this.name = name;
@@ -61,19 +62,20 @@ function generatePicture () {
     centerPicture = document.getElementById('center-picture');
     rightPicture = document.getElementById('right-picture');
     leftPicture.src = rand1.path;
-    leftPicture.name = rand1.name;
+    leftPicture.alt = rand1.name;
     centerPicture.src = rand2.path;
-    centerPicture.name = rand2.name;
+    centerPicture.alt = rand2.name;
     rightPicture.src = rand3.path;
-    rightPicture.name = rand3.name;
+    rightPicture.alt = rand3.name;
   }
 }
 
 function imageClick(event) {
-  for(var i = 0; i < allPicturesArray.length; i++)
-    if(event.target.name === allPicturesArray[i].name) {
-      allPicturesArray[i].tally += 1;
-    }
+  console.log(event.target.alt);
+//   for(var i = 0; i < allPicturesArray.length; i++)
+//     if(event.target.alt === allPicturesArray[i].name) {
+//       allPicturesArray[i].tally += 1;
+//     }
 }
 
 // store click information
@@ -86,10 +88,10 @@ if(totalClicks < 26) {
   document.getElementById('display-button').style.visibility = 'visible';
 }
 
-var thePictures = document.getElementsByClassName(randomPicture);
-for(var k = 0; k < thePictures.length; k++) {
-  thePictures[k].addEventListener('click', imageClick);
-}
+// adds event listener to all pictures
+var divIdPicture = document.getElementById('pictures');
+divIdPicture.addEventListener('click', imageClick);
+
 // function to increment click count
 function increaseClickCount(pictureName) {
   for(var i = 0; i < allPicturesArray.length; i++) {
@@ -100,6 +102,7 @@ function increaseClickCount(pictureName) {
     }
   }
 }
+
 increaseClickCount();
 generatePicture();
 // removes event listener once totalClicks is greater than 25
@@ -110,6 +113,7 @@ document.addEventListener('click', function() {
     }
   }
 });
+
 // function to display totalClicks when user clicks show results
 function displayClicks () {
   var countOfClicks = [];
