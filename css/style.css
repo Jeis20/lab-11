@@ -18,7 +18,12 @@ p {
     font-size: 22px;
 }
 
-.container {
+div img {
     margin: 50px;
+    width: 20%;
+}
 
+button {
+    top: -30px;
+    margin: 50px;
 }

@@ -26,10 +26,10 @@ function randomPicture() {
   var a = showRandomPicture();
   return allPicturesArray[a];
 }
-
-// constructor object with name and path parameters for pictures
+console.log(allPicturesArray);
+// constructor function with name and path parameters for pictures
 function Picture(name) {
-  this.name = name.split('.')[0];
+  this.name = name;
   this.path = `img/${name}.jpg`;
   this.tally = 0;
   this.views = 0;
@@ -57,15 +57,15 @@ function generatePicture () {
     rand1.views += 1;
     rand2.views += 1;
     rand3.views += 1;
-    var leftPicture = document.getElementById('left-picture');
-    var centerPicture = document.getElementById('center-picture');
-    var rightPicture = document.getElementById('right-picture');
+    leftPicture = document.getElementById('left-picture');
+    centerPicture = document.getElementById('center-picture');
+    rightPicture = document.getElementById('right-picture');
     leftPicture.src = rand1.path;
     leftPicture.name = rand1.name;
     centerPicture.src = rand2.path;
-    centerPicture.src = rand2.name;
+    centerPicture.name = rand2.name;
     rightPicture.src = rand3.path;
-    rightPicture.src = rand3.name;
+    rightPicture.name = rand3.name;
   }
 }
 
