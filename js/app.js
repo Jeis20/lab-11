@@ -1,27 +1,13 @@
 'use strict';
 
-var imageEl = document.getElementById('served-images');
+// array holding all picture names
+var allPictureNames = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
 
-var allPictures = [];
+var totalClicks = 0;
 
-function Pictures(name) {
-  this.name = name;
-  this.timesShown = 0;
-  this.path = `images/${name}.jpg`;
-  allPictures.push(this);
-}
-
-var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
-
-allPictureNames.forEach(function(pictureName) {
-  newPicture(pictureName);
-});
-
+// generates random picture
 function showRandomPicture () {
-  var rando = Math.floor(allPictureNames.length * Math.random());
-  imageEl.src = allPictures[rando].path;
-  imageEl.title = allPictures[rando].name;
-  allPictures[rando].timesShown++;
+  return Math.floor(Math.random() * allPictureNames.length);
 }
 
 showRandomPicture();
