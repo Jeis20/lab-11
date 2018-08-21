@@ -69,7 +69,7 @@ function generatePicture () {
   }
 }
 
-function formClick(event) {
+function imageClick(event) {
   for(var i = 0; i < allPicturesArray.length; i++)
     if(event.target.name === allPicturesArray[i].name) {
       allPicturesArray[i].tally += 1;
@@ -78,19 +78,19 @@ function formClick(event) {
 
 // store click information
 totalClicks += 1;
-if(totalClicks < 25) {
+if(totalClicks < 26) {
   generatePicture();
 } else {
-  var imgs = document.querySelectorAll('random-picture');
+  var imgs = document.querySelectorAll(randomPicture);
   document.removeEventListener('click', imgs);
   document.getElementById('display-button').style.visibility = 'visible';
 }
 
-var thePictures = document.getElementsByClassName('random-picture');
-for(var k = 0; i < thePictures.length; i++) {
-  thePictures[k].addEventListener('click', formClick);
+var thePictures = document.getElementsByClassName(randomPicture);
+for(var k = 0; k < thePictures.length; k++) {
+  thePictures[k].addEventListener('click', imageClick);
 }
-
+// function to increment click count
 function increaseClickCount(pictureName) {
   for(var i = 0; i < allPicturesArray.length; i++) {
 
@@ -100,24 +100,22 @@ function increaseClickCount(pictureName) {
     }
   }
 }
-generatePicture();
 increaseClickCount();
-
+generatePicture();
+// removes event listener once totalClicks is greater than 25
 document.addEventListener('click', function() {
   if(totalClicks > 25) {
     for(var i = 0; i < thePictures.length; i++) {
-      thePictures[i].removeEventListener('click', formClick);
+      thePictures[i].removeEventListener('click', imageClick);
     }
   }
 });
-
+// function to display totalClicks when user clicks show results
 function displayClicks () {
   var countOfClicks = [];
   for(var i = 0; i < allPicturesArray.length; i++) {
     countOfClicks.push(allPicturesArray[i].count);
   }
-  localStorage.busMall = JSON.stringify(allPicturesArray);
   return countOfClicks;
 }
-
 displayClicks();
