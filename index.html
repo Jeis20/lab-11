@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" >
+            <title>Bus Mall App</title>
+            <link href="css/reset.css" type="text/css" rel="stylesheet" />
+            <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+        </head>
+    <body>
+        <h1>Welcome to the only BusMall in Town</h1>
+        <h2>All Aboard!</h2>
+        <p>To get started, you will be shown 3 images generated at random. Then, select your favorite picture out of the 3 by clicking on it. </br>You will be asked to select your favorite picture 25 times and at the end, your results will show in a graph. Cheers!</p>
+    <section class="container">
+        <img class="random-picture" id="picture-one" src="http://placehold.it/250x325" />
+        <img class="random-picture" id="picture-two" src="http://placehold.it/250x325" />
+        <img class="random-picture" id="picture-three" src="http://placehold.it/250x325" />
+
+        <div>
+            <button type="button" id="results-button">Show The Results</button>
+        </div>
+    </section>
+
+        <div class="chart">
+            <canvas id="results-chart" width="1000px" height="400px"></canvas>
+        </div>
+
+        <img id="served-images" />
+
+        <script src="js/app.js" type="text/javascript"></script>
+
+    </body>
+</html>
