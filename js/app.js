@@ -4,13 +4,19 @@
 var allPicturesArray = [];
 
 // array holding all picture names
-var allPictureNames = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
+var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
+
+// var imageEl = document.getElementById('served-images');
 
 var totalClicks = 0;
 
 // displays random picture
 function showRandomPicture() {
   return Math.floor(Math.random() * allPictureNames.length);
+//   var random = Math.floor(allPictureNames.length * Math.random());
+//   imageEl.src = allPicturesArray[random].path;
+//   imageEl.title = allPicturesArray[random].name;
+//   allPicturesArray[random].timesShown++;
 }
 
 // display 3 images only for displayThreeImages function
@@ -22,7 +28,7 @@ function randomPicture() {
 // constructor object with name and path parameters for pictures
 function Picture(name) {
   this.name = name.split('.')[0];
-  this.path = 'imgs/' + name;
+  this.path = `img/${name}.jpg`;
   this.tally = 0;
   this.views = 0;
 }
@@ -87,12 +93,13 @@ function increaseClickCount(pictureName) {
   for(var i = 0; i < allPicturesArray.length; i++) {
 
     if(allPicturesArray[i].name === pictureName) {
-      allPicturesArray[i].tally += 1;
+      allPicturesArray[i].count += 1;
       break;
     }
   }
 }
 generatePicture();
+increaseClickCount();
 
 document.addEventListener('click', function() {
   if(totalClicks > 25) {
@@ -101,3 +108,14 @@ document.addEventListener('click', function() {
     }
   }
 });
+
+function displayClicks () {
+  var countOfClicks = [];
+  for(var i = 0; i < allPicturesArray.length; i++) {
+    countOfClicks.push(allPicturesArray[i].count);
+  }
+  localStorage.busMall = JSON.stringify(allPicturesArray);
+  return countOfClicks;
+}
+
+displayClicks();
