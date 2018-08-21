@@ -6,7 +6,9 @@ var allPicturesArray = [];
 // array holding all picture names
 var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-// var imageEl = document.getElementById('served-images');
+var leftPicture = document.getElementById('left-picture');
+var centerPicture = document.getElementById('center-picture');
+var rightPicture = document.getElementById('right-picture');
 
 var totalClicks = 0;
 
@@ -39,7 +41,7 @@ for(var i = 0; i < allPictureNames.length; i++) {
 
 // function and logic to randomly pull in 3 pictures
 function generatePicture () {
-  if(totalClicks < 25) {
+  if(totalClicks < 26) {
     var rand1 = randomPicture();
     var rand2 = randomPicture();
     var rand3 = randomPicture();
@@ -55,15 +57,15 @@ function generatePicture () {
     rand1.views += 1;
     rand2.views += 1;
     rand3.views += 1;
-    var pictureOne = document.getElementById('picture-one');
-    var pictureTwo = document.getElementById('picture-two');
-    var pictureThree = document.getElementById('picture-three');
-    pictureOne.src = rand1.path;
-    pictureOne.name = rand1.name;
-    pictureTwo.src = rand2.path;
-    pictureTwo.src = rand2.name;
-    pictureThree.src = rand3.path;
-    pictureThree.src = rand3.name;
+    var leftPicture = document.getElementById('left-picture');
+    var centerPicture = document.getElementById('center-picture');
+    var rightPicture = document.getElementById('right-picture');
+    leftPicture.src = rand1.path;
+    leftPicture.name = rand1.name;
+    centerPicture.src = rand2.path;
+    centerPicture.src = rand2.name;
+    rightPicture.src = rand3.path;
+    rightPicture.src = rand3.name;
   }
 }
 
@@ -79,7 +81,7 @@ totalClicks += 1;
 if(totalClicks < 25) {
   generatePicture();
 } else {
-  var imgs = document.querySelectorAll('.random-picture');
+  var imgs = document.querySelectorAll('random-picture');
   document.removeEventListener('click', imgs);
   document.getElementById('display-button').style.visibility = 'visible';
 }
