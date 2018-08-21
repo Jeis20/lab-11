@@ -9,6 +9,7 @@ var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbl
 var leftPicture = document.getElementById('left-picture');
 var centerPicture = document.getElementById('center-picture');
 var rightPicture = document.getElementById('right-picture');
+var resultsList = document.getElementById('results-list');
 
 var totalClicks = 0;
 
@@ -41,7 +42,7 @@ for(var i = 0; i < allPictureNames.length; i++) {
 }
 
 // function and logic to randomly pull in 3 pictures
-function generatePicture () {
+function generatePictures () {
   if(totalClicks < 26) {
     var rand1 = randomPicture();
     var rand2 = randomPicture();
@@ -72,54 +73,65 @@ function generatePicture () {
 
 function imageClick(event) {
   console.log(event.target.alt);
-//   for(var i = 0; i < allPicturesArray.length; i++)
-//     if(event.target.alt === allPicturesArray[i].name) {
-//       allPicturesArray[i].tally += 1;
-//     }
-}
-
-// store click information
-totalClicks += 1;
-if(totalClicks < 26) {
-  generatePicture();
-} else {
-  var imgs = document.querySelectorAll(randomPicture);
-  document.removeEventListener('click', imgs);
-  document.getElementById('display-button').style.visibility = 'visible';
+  for(var i = 0; i < allPicturesArray.length; i++) {
+    if(event.target.alt === allPicturesArray[i].name) {
+      allPicturesArray[i].tally += 1;
+    }
+  }
+  if (totalClicks >= 25) {
+    displayClicks();
+    divIdPicture.removeEventListener('click', imageClick, false);
+  }
+  else {
+    generatePictures();
+    totalClicks++;
+    console.log(totalClicks);
+  }
 }
 
 // adds event listener to all pictures
 var divIdPicture = document.getElementById('pictures');
 divIdPicture.addEventListener('click', imageClick);
 
-// function to increment click count
-function increaseClickCount(pictureName) {
-  for(var i = 0; i < allPicturesArray.length; i++) {
-
-    if(allPicturesArray[i].name === pictureName) {
-      allPicturesArray[i].count += 1;
-      break;
-    }
-  }
+// store click information
+// totalClicks >= 1;
+if(totalClicks < 26) {
+  generatePictures();
+} else {
+  var imgs = document.querySelectorAll(randomPicture);
+  document.removeEventListener('click', imgs);
+  document.getElementById('results-button').style.visibility = 'visible';
 }
 
-increaseClickCount();
-generatePicture();
+// function to increment click count
+// function increaseClickCount(pictureName) {
+//   for(var i = 0; i < allPicturesArray.length; i++) {
+//     if(allPicturesArray[i].name === pictureName) {
+//       allPicturesArray[i].count++;
+//       break;
+//     }
+//   }
+// }
+
+// increaseClickCount();
+generatePictures();
 // removes event listener once totalClicks is greater than 25
 document.addEventListener('click', function() {
   if(totalClicks > 25) {
-    for(var i = 0; i < thePictures.length; i++) {
-      thePictures[i].removeEventListener('click', imageClick);
+    for(var i = 0; i < allPicturesArray.length; i++) {
+      allPicturesArray[i].removeEventListener('click', imageClick);
     }
   }
 });
 
 // function to display totalClicks when user clicks show results
 function displayClicks () {
-  var countOfClicks = [];
+
+  // var countOfClicks = [];
   for(var i = 0; i < allPicturesArray.length; i++) {
-    countOfClicks.push(allPicturesArray[i].count);
+    var liEl = document.createElement('li');
+    liEl.textContent = `${allPicturesArray[i].tally} votes for the ${allPicturesArray[i].name}`;
+    resultsList.appendChild(liEl);
+    // countOfClicks.push(allPicturesArray[i].count);
   }
-  return countOfClicks;
 }
-displayClicks();
