@@ -5,10 +5,20 @@ body {
 
 h1 {
     margin: 20px;
+    font-size: 45px;
+}
+
+h2 {
+    margin: 20px;
     font-size: 30px;
+}
+
+p {
+    margin: 20px;
+    font-size: 22px;
 }
 
 .container {
     margin: 50px;
-    
+
 }
