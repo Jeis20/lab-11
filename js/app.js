@@ -9,7 +9,7 @@ var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbl
 var leftPicture = document.getElementById('left-picture');
 var centerPicture = document.getElementById('center-picture');
 var rightPicture = document.getElementById('right-picture');
-var resultsList = document.getElementById('results-list');
+// var resultsList = document.getElementById('results-list');
 
 var totalClicks = 0;
 
@@ -96,7 +96,7 @@ function imageClick(event) {
   if (totalClicks >= 25) {
     createChartToDisplay();
     updateChartArrays();
-    displayClicks();
+    // displayClicks();
     divIdPicture.removeEventListener('click', imageClick, false);
   }
   else {
@@ -122,16 +122,15 @@ document.addEventListener('click', function() {
 });
 
 // function to display totalClicks when user clicks show results -- is this still needed?
-function displayClicks () {
+// function displayClicks () {
 
-  // var countOfClicks = [];
-  for(var i = 0; i < allPicturesArray.length; i++) {
-    var liEl = document.createElement('li');
-    liEl.textContent = `${allPicturesArray[i].tally} votes for the ${allPicturesArray[i].name}`;
-    resultsList.appendChild(liEl);
-    // countOfClicks.push(allPicturesArray[i].count);
-  }
-}
+//   for(var i = 0; i < allPicturesArray.length; i++) {
+//     var liEl = document.createElement('li');
+//     liEl.textContent = `${allPicturesArray[i].tally} votes for the ${allPicturesArray[i].name}`;
+//     resultsList.appendChild(liEl);
+// countOfClicks.push(allPicturesArray[i].count);
+//   }
+// }
 
 // function to update chart information
 
@@ -140,10 +139,10 @@ var totalPictureDisplays = [];
 var pictureNames = [];
 
 function updateChartArrays() {
-  for (var i = 0; i < allPictureNames.length; i++) {
-    pictureNames[i] = allPictureNames[i].name;
-    totalPictureVotes[i] = allPictureNames[i].timesChosen;
-    totalPictureDisplays[i] = allPictureNames[i].timesShown;
+  for (var i = 0; i < allPicturesArray.length; i++) {
+    pictureNames[i] = allPicturesArray[i].name;
+    totalPictureVotes[i] = allPicturesArray[i].tally;
+    totalPictureDisplays[i] = allPicturesArray[i].views;
   }
   console.log(pictureNames);
   console.log(totalPictureVotes);
