@@ -141,7 +141,7 @@ document.addEventListener('click', function() {
   }
 });
 
-// function to display totalClicks when user clicks show results
+// function to display totalClicks when user clicks show results -- is this still needed?
 function displayClicks () {
 
   // var countOfClicks = [];
@@ -173,8 +173,8 @@ function updateChartArrays() {
 
 function createChartToDisplay() {
   var ctx = document.getElementById('results-chart').getContext('2d');
-  Chart.defaults.global.defaultFontColor = 'white';
-  new Chart(ctx, {
+  Chart.defaults.global.defaultFontColor = 'white'; // eslint-disable-line
+  new Chart(ctx, { // eslint-disable-line
     type: 'horizontalBar',
     data: {
       labels: pictureNames,
