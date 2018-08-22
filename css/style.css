@@ -36,6 +36,7 @@ button {
     width: 50%;
 }
 
-canvas {
+div canvas {
     background: lightgray;
+    width: 200px;
 }
