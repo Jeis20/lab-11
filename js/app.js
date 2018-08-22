@@ -94,6 +94,8 @@ function imageClick(event) {
     }
   }
   if (totalClicks >= 25) {
+    createChartToDisplay();
+    updateChartArrays();
     displayClicks();
     divIdPicture.removeEventListener('click', imageClick, false);
   }
@@ -107,36 +109,14 @@ function imageClick(event) {
 // adds event listener to all pictures
 var divIdPicture = document.getElementById('pictures');
 divIdPicture.addEventListener('click', imageClick);
-
-// store click information
-// totalClicks >= 1;
-// if(totalClicks < 26) {
-//   generatePictures();
-// } else {
-//   var imgs = document.querySelectorAll(randomPicture);
-//   document.removeEventListener('click', imgs);
-//   document.getElementById('results-button').style.visibility = 'visible';
-// }
-
-// function to increment click count
-// function increaseClickCount(pictureName) {
-//   for(var i = 0; i < allPicturesArray.length; i++) {
-//     if(allPicturesArray[i].name === pictureName) {
-//       allPicturesArray[i].count++;
-//       break;
-//     }
-//   }
-// }
-
-// increaseClickCount();
 generatePictures();
 // removes event listener once totalClicks is greater than 25
 document.addEventListener('click', function() {
   if(totalClicks > 25) {
     for(var i = 0; i < allPicturesArray.length; i++) {
+      // createChartToDisplay();
+      // updateChartArrays();
       allPicturesArray[i].removeEventListener('click', imageClick);
-      updateChartArrays();
-      createChartToDisplay();
     }
   }
 });
@@ -173,7 +153,6 @@ function updateChartArrays() {
 
 function createChartToDisplay() {
   var ctx = document.getElementById('results-chart').getContext('2d');
-  Chart.defaults.global.defaultFontColor = 'white'; // eslint-disable-line
   new Chart(ctx, { // eslint-disable-line
     type: 'horizontalBar',
     data: {

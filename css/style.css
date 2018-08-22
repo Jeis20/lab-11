@@ -29,8 +29,12 @@ button {
     margin: 50px;
 }
 
-#results-list {
+results-list {
     font-size: 22px;
     margin: 30px;
     top: -20;
+}
+
+canvas {
+    background: gray;
 }
