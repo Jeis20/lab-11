@@ -18,7 +18,18 @@ p {
     font-size: 22px;
 }
 
-.container {
+div img {
     margin: 50px;
+    width: 15%;
+}
 
+button {
+    top: -30px;
+    margin: 50px;
+}
+
+#results-list {
+    font-size: 22px;
+    margin: 30px;
+    top: -20;
 }
