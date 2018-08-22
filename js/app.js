@@ -27,7 +27,7 @@ function randomPicture() {
   var a = showRandomPicture();
   return allPicturesArray[a];
 }
-console.log(allPicturesArray);
+// console.log(allPicturesArray);
 
 // constructor function with name and path parameters for pictures
 function Picture(name) {
@@ -35,6 +35,7 @@ function Picture(name) {
   this.path = `img/${name}.jpg`;
   this.tally = 0;
   this.views = 0;
+  this.previous = false;
 }
 
 for(var i = 0; i < allPictureNames.length; i++) {
@@ -47,18 +48,32 @@ function generatePictures () {
     var rand1 = randomPicture();
     var rand2 = randomPicture();
     var rand3 = randomPicture();
-    while (rand1 === rand2 || rand1 === rand3) {
+    console.log('rand1', rand1);
+    console.log('rand2', rand2);
+    console.log('rand3', rand3);
+    while (rand1 === rand2 || rand1 === rand3 || rand1.previous) {
       rand1 = randomPicture();
+      console.log('blah');
     }
-    while (rand2 === rand1 || rand2 === rand3) {
+    // console.log('first image', rand1);
+
+    while (rand2 === rand1 || rand2 === rand3 || rand2.previous) {
       rand2 = randomPicture();
+      console.log('and');
     }
-    while (rand3 === rand1 || rand3 === rand2) {
+    while (rand3 === rand1 || rand3 === rand2 || rand3.previous) {
       rand3 = randomPicture();
+      console.log('lifting');
     }
     rand1.views += 1;
     rand2.views += 1;
     rand3.views += 1;
+    for (var i = 0; i < allPicturesArray.length; i++){
+      allPicturesArray[i].previous = false;
+    }
+    rand1.previous = true;
+    rand2.previous = true;
+    rand3.previous = true;
     leftPicture = document.getElementById('left-picture');
     centerPicture = document.getElementById('center-picture');
     rightPicture = document.getElementById('right-picture');
@@ -72,7 +87,7 @@ function generatePictures () {
 }
 
 function imageClick(event) {
-  console.log(event.target.alt);
+  // console.log(event.target.alt);
   for(var i = 0; i < allPicturesArray.length; i++) {
     if(event.target.alt === allPicturesArray[i].name) {
       allPicturesArray[i].tally += 1;
@@ -85,7 +100,7 @@ function imageClick(event) {
   else {
     generatePictures();
     totalClicks++;
-    console.log(totalClicks);
+    // console.log(totalClicks);
   }
 }
 
@@ -95,13 +110,13 @@ divIdPicture.addEventListener('click', imageClick);
 
 // store click information
 // totalClicks >= 1;
-if(totalClicks < 26) {
-  generatePictures();
-} else {
-  var imgs = document.querySelectorAll(randomPicture);
-  document.removeEventListener('click', imgs);
-  document.getElementById('results-button').style.visibility = 'visible';
-}
+// if(totalClicks < 26) {
+//   generatePictures();
+// } else {
+//   var imgs = document.querySelectorAll(randomPicture);
+//   document.removeEventListener('click', imgs);
+//   document.getElementById('results-button').style.visibility = 'visible';
+// }
 
 // function to increment click count
 // function increaseClickCount(pictureName) {
