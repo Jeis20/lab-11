@@ -16,7 +16,7 @@ h2 {
 
 p {
     margin: 20px;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 div img {
@@ -37,6 +37,7 @@ button {
 }
 
 div canvas {
-    background: lightgray;
-    width: 200px;
+    background: lightblue;
+    display: block;
+    margin: 45px;
 }

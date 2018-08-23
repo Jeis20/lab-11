@@ -9,17 +9,12 @@ var allPictureNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbl
 var leftPicture = document.getElementById('left-picture');
 var centerPicture = document.getElementById('center-picture');
 var rightPicture = document.getElementById('right-picture');
-// var resultsList = document.getElementById('results-list');
 
 var totalClicks = 0;
 
-// displays random picture
+// math calculated to display random picture
 function showRandomPicture() {
   return Math.floor(Math.random() * allPictureNames.length);
-//   var random = Math.floor(allPictureNames.length * Math.random());
-//   imageEl.src = allPicturesArray[random].path;
-//   imageEl.title = allPicturesArray[random].name;
-//   allPicturesArray[random].timesShown++;
 }
 
 // display 3 images only for displayThreeImages function
@@ -96,11 +91,11 @@ function imageClick(event) {
   if (totalClicks >= 25) {
     createChartToDisplay();
     updateChartArrays();
-    // displayClicks();
     divIdPicture.removeEventListener('click', imageClick, false);
   }
   else {
     generatePictures();
+    localStorage.viewsAndPictures = JSON.stringify(allPicturesArray);
     totalClicks++;
     // console.log(totalClicks);
   }
@@ -110,27 +105,15 @@ function imageClick(event) {
 var divIdPicture = document.getElementById('pictures');
 divIdPicture.addEventListener('click', imageClick);
 generatePictures();
+
 // removes event listener once totalClicks is greater than 25
 document.addEventListener('click', function() {
   if(totalClicks > 25) {
     for(var i = 0; i < allPicturesArray.length; i++) {
-      // createChartToDisplay();
-      // updateChartArrays();
       allPicturesArray[i].removeEventListener('click', imageClick);
     }
   }
 });
-
-// function to display totalClicks when user clicks show results -- is this still needed?
-// function displayClicks () {
-
-//   for(var i = 0; i < allPicturesArray.length; i++) {
-//     var liEl = document.createElement('li');
-//     liEl.textContent = `${allPicturesArray[i].tally} votes for the ${allPicturesArray[i].name}`;
-//     resultsList.appendChild(liEl);
-// countOfClicks.push(allPicturesArray[i].count);
-//   }
-// }
 
 // function to update chart information
 
@@ -147,6 +130,14 @@ function updateChartArrays() {
   console.log(pictureNames);
   console.log(totalPictureVotes);
 }
+
+function verifyLocalStorage () {
+  if(localStorage.viewsAndPictures) {
+    allPicturesArray = JSON.parse(localStorage.viewsAndPictures);
+  }
+}
+
+verifyLocalStorage();
 
 // function that creates chart
 
